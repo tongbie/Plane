@@ -18,7 +18,6 @@ public class Hero extends View {
 
     public Hero(Context context) {
         super(context);
-
     }
 
     public Hero(Context context, @Nullable AttributeSet attrs) {
@@ -38,6 +37,7 @@ public class Hero extends View {
     private int heroState = 0;
     public int Xlength=0;
     public int Ylength=0;
+    private boolean isFristMeasure=true;
 
     public void setXhero(int Xhero){
         if(Xhero>Xlength&&Xhero<(getMeasuredWidth()-Xlength)) {
@@ -77,11 +77,14 @@ public class Hero extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.hero0);
-        bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.hero1);
-        Xhero = getMeasuredWidth()/2;
-        Yhero = getMeasuredHeight()/2;
-        Xlength=bitmap0.getWidth()/2;
-        Ylength=bitmap0.getHeight()/2;
+        if(isFristMeasure) {
+            bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.hero0);
+            bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.hero1);
+            Xhero = getMeasuredWidth() / 2;
+            Yhero = getMeasuredHeight() / 2;
+            Xlength = bitmap0.getWidth() / 2;
+            Ylength = bitmap0.getHeight() / 2;
+            isFristMeasure=false;
+        }
     }
 }

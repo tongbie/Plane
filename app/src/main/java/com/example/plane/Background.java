@@ -20,6 +20,7 @@ public class Background extends View {
     private Matrix matrix=new Matrix();
     private Paint paint=new Paint();
     private int Time=0;
+    private boolean isFirstMeasure=true;
 
     public Background(Context context) {
         super(context);
@@ -47,7 +48,10 @@ public class Background extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.background);
-        Time=-bitmap.getHeight()+getMeasuredHeight();
+        if(isFirstMeasure) {
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+            Time = -bitmap.getHeight() + getMeasuredHeight();
+            isFirstMeasure=false;
+        }
     }
 }

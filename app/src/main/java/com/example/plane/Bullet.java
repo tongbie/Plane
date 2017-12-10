@@ -35,6 +35,7 @@ public class Bullet extends View {
     private Bitmap bitmap;
     private Matrix matrix = new Matrix();
     private Paint paint = new Paint();
+    private boolean isFirstMeasure=true;
 
     public void setXbullet(int Xbullet) {
         this.Xbullet = Xbullet;
@@ -63,6 +64,9 @@ public class Bullet extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullet);
+        if(isFirstMeasure) {
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullet);
+            isFirstMeasure=false;
+        }
     }
 }

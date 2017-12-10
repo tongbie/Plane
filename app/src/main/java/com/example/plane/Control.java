@@ -38,7 +38,6 @@ public class Control extends View {
 //                            }
                         break;
                     case MotionEvent.ACTION_UP:
-                        isOnTouch = true;
                         Xcontroler = Xposition;
                         Ycontroler = Yposition;
                         break;
@@ -64,7 +63,7 @@ public class Control extends View {
     private Paint paint = new Paint();
     private Paint paint1 = new Paint();
     private int radio;
-    private boolean isOnTouch = true;
+    private boolean isFirstMeasure = true;
 
     public int getXspeed() {
         return Xcontroler-Xposition;
@@ -94,16 +93,19 @@ public class Control extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Xposition = getMeasuredWidth() / 4;
-        Yposition = getMeasuredHeight() / 7* 6;
-        Xcontroler = Xposition;
-        Ycontroler = Yposition;
-        radio = getMeasuredWidth() / 5;
-        paint.setStyle(Paint.Style.FILL);
-        paint.setAntiAlias(true);
-        paint.setColor(Color.GRAY);
-        paint.setAlpha(100);
-        paint1.setColor(Color.parseColor("#ec6d71"));
-        paint1.setAntiAlias(true);
+        if(isFirstMeasure) {
+            Xposition = getMeasuredWidth() / 4;
+            Yposition = getMeasuredHeight() / 7 * 6;
+            Xcontroler = Xposition;
+            Ycontroler = Yposition;
+            radio = getMeasuredWidth() / 5;
+            paint.setStyle(Paint.Style.FILL);
+            paint.setAntiAlias(true);
+            paint.setColor(Color.GRAY);
+            paint.setAlpha(100);
+            paint1.setColor(Color.parseColor("#ec6d71"));
+            paint1.setAntiAlias(true);
+            isFirstMeasure=false;
+        }
     }
 }

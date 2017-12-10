@@ -50,6 +50,7 @@ public class Enemy extends View {
     final private int SIN = 2;
     final private int SIN1 = 3;
     final private int SIN2=4;
+    private boolean isFirstMeasure=true;
 
     public int getXEnemy() {
         return XEnemy;
@@ -76,11 +77,11 @@ public class Enemy extends View {
         super.onDraw(canvas);
         matrix.setTranslate(XEnemy - XLength, YEnemy - YLength);
         canvas.drawBitmap(bitmap0, matrix, paint);
-        YEnemy += 10;
+        YEnemy += 16;
         /*if (XEnemy > getMeasuredWidth()/2) {
-            XEnemy -= time / 10;
+            XEnemy -= 20;
         } else {
-            XEnemy += time / 10;
+            XEnemy += 20;
         }*/
         if (XEnemy <= XLength) {
             MODE = RIGHT;
@@ -96,9 +97,7 @@ public class Enemy extends View {
                     MODE = RIGHT;
                 }
                 if(time<=400) {
-                    XEnemy -= time / 20;
-                }else {
-                    MODE=SIN;
+                    XEnemy -= Math.abs(Math.sin(time))*getMeasuredWidth() / 100;
                 }
                 break;
             case RIGHT:
@@ -106,9 +105,7 @@ public class Enemy extends View {
                     MODE = LEFT;
                 }
                 if(time<=400) {
-                    XEnemy += time / 20;
-                }else {
-                    MODE=SIN;
+                    XEnemy += Math.abs(Math.sin(time))*getMeasuredWidth() / 100;
                 }
                 break;
             case SIN://cosx-2sin2x+sin4x
@@ -136,13 +133,16 @@ public class Enemy extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.enemy0);
-        bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.bomb_1);
-        XLength = bitmap0.getWidth() / 2;
-        YLength = bitmap0.getHeight() / 2;
-        Random random = new Random();
-        XEnemy = random.nextInt(getMeasuredWidth() - 2 * XLength) + XLength;
-        YEnemy = -YLength;
-        MODE = random.nextInt(5) - 1;
+        if(isFirstMeasure) {
+            bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.enemy0);
+            bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.bomb_1);
+            XLength = bitmap0.getWidth() / 2;
+            YLength = bitmap0.getHeight() / 2;
+            Random random = new Random();
+            XEnemy = random.nextInt(getMeasuredWidth() - 2 * XLength) + XLength;
+            YEnemy = -YLength;
+            MODE = random.nextInt(5) - 1;
+            isFirstMeasure=false;
+        }
     }
 }
