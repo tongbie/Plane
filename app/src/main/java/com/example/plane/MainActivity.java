@@ -85,14 +85,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     int X_bullet_enemy = enemyList.get(i).getXEnemy() - bulletList.get(j).getXbullet();
                     int Y_bullet_enemy = enemyList.get(i).getYEnemy() - bulletList.get(j).getYbullet();
                     if ((X_bullet_enemy > -hero.Xlength && X_bullet_enemy < hero.Xlength) && (Y_bullet_enemy > -hero.Ylength && Y_bullet_enemy < hero.Ylength)) {
-//                        enemyList.get(i).setDestoryed(true);
                         root.removeView(enemyList.get(i));
                         root.removeView(bulletList.get(j));
                         enemyList.remove(i);
                         bulletList.remove(j);
                         BULLETNUMBER++;
                         SCORE += 10;
-                        System.gc();
                         break;
                     }
                 }

@@ -33,7 +33,6 @@ public class Enemy extends View {
 
     private int XEnemy;
     private int YEnemy;
-    private boolean isDestoryed = false;
     private Bitmap bitmap0;
     private Bitmap bitmap1;
     private Matrix matrix = new Matrix();
@@ -78,11 +77,6 @@ public class Enemy extends View {
         matrix.setTranslate(XEnemy - XLength, YEnemy - YLength);
         canvas.drawBitmap(bitmap0, matrix, paint);
         YEnemy += 16;
-        /*if (XEnemy > getMeasuredWidth()/2) {
-            XEnemy -= 20;
-        } else {
-            XEnemy += 20;
-        }*/
         if (XEnemy <= XLength) {
             MODE = RIGHT;
         } else if (XEnemy >= getMeasuredWidth() - XLength) {
@@ -90,7 +84,7 @@ public class Enemy extends View {
         }
         switch (MODE) {
             case STRAIGHT:
-                YLength+=20;
+                YEnemy+=20;
                 break;
             case LEFT:
                 if (XEnemy <= XLength) {
