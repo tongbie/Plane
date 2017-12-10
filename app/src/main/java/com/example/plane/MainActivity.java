@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             hero.setXhero(hero.getXhero() + control.getXspeed() / 18);
             hero.setYhero(hero.getYhero() + control.getYspeed() / 18);
             /* 产生敌人 */
-            if (time % 166 == 0||time==0) {
+            if (time % 166 == 0 || time == 0) {
                 Enemy enemy = new Enemy(getApplicationContext());
                 enemyList.add(enemy);
                 root.addView(enemyList.get(enemyList.size() - 1));
@@ -100,12 +100,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (enemyList.get(0).getYEnemy() > 2000) {
                     root.removeView(enemyList.get(0));
                     enemyList.remove(0);
-                    SCORE+=5;
+                    SCORE += 5;
                 }
             }
             /* 回收子弹内存 */
             if (bulletList.size() > 1) {
-                if (bulletList.get(0).getYbullet()<-200) {
+                if (bulletList.get(0).getYbullet() < -200) {
                     root.removeView(bulletList.get(0));
                     bulletList.remove(0);
                 }
