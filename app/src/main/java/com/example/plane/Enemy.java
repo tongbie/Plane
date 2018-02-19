@@ -34,21 +34,12 @@ public class Enemy extends View {
     private int XEnemy;
     private int YEnemy;
     private Bitmap bitmap0;
-    private Bitmap bitmap1;
     private Matrix matrix = new Matrix();
     private Paint paint = new Paint();
     private int time;
     public int XLength = 100;
     public int YLength = 100;
     private int MODE = 0;
-    private int TIME;
-    final private int DESTORY = 0x111;
-    final private int LEFT = -1;
-    final private int STRAIGHT = 0;
-    final private int RIGHT = 1;
-    final private int SIN = 2;
-    final private int SIN1 = 3;
-    final private int SIN2=4;
     private boolean isFirstMeasure=true;
 
     public int getXEnemy() {
@@ -63,14 +54,6 @@ public class Enemy extends View {
         this.time = time;
     }
 
-    public void setMode(int MODE) {
-        this.MODE = MODE;
-    }
-
-    public void addXEnemy(int add){
-        XEnemy+=add;
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -78,43 +61,43 @@ public class Enemy extends View {
         canvas.drawBitmap(bitmap0, matrix, paint);
         YEnemy += 16;
         if (XEnemy <= XLength) {
-            MODE = RIGHT;
+            MODE = 1;
         } else if (XEnemy >= getMeasuredWidth() - XLength) {
-            MODE = LEFT;
+            MODE = -1;
         }
         switch (MODE) {
-            case STRAIGHT:
+            case 0:
                 YEnemy+=20;
                 break;
-            case LEFT:
+            case -1:
                 if (XEnemy <= XLength) {
-                    MODE = RIGHT;
+                    MODE = 1;
                 }
                 if(time<=400) {
                     XEnemy -= Math.abs(Math.sin(time))*getMeasuredWidth() / 100;
                 }
                 break;
-            case RIGHT:
+            case 1:
                 if (XEnemy >= getMeasuredWidth() - XLength) {
-                    MODE = LEFT;
+                    MODE = -1;
                 }
                 if(time<=400) {
                     XEnemy += Math.abs(Math.sin(time))*getMeasuredWidth() / 100;
                 }
                 break;
-            case SIN://cosx-2sin2x+sin4x
+            case 2://cosx-2sin2x+sin4x
                 if (XEnemy > XLength && XEnemy < getMeasuredWidth() - XLength) {
                     XEnemy += (Math.cos(time) -2*Math.cos(2*time)+Math.sin(4*time))* getMeasuredWidth() / 100;
                 }
                 break;
-            case SIN1://sinx-2cos2x+sin4x
+            case 3://sinx-2cos2x+sin4x
                 if (XEnemy > XLength && XEnemy < getMeasuredWidth() - XLength) {
                     XEnemy +=( Math.sin(time)
                             - 2 * Math.cos(time*2)
                             + Math.sin(time*4))* getMeasuredWidth() / 100;
                 }
                 break;
-            case SIN2://x*sinx
+            case 4://x*sinx
                 if (XEnemy > XLength && XEnemy < getMeasuredWidth() - XLength) {
                     XEnemy += time*Math.sin(time) * getMeasuredWidth() / 100;
                 }
@@ -129,7 +112,6 @@ public class Enemy extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if(isFirstMeasure) {
             bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.enemy0);
-            bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.bomb_1);
             XLength = bitmap0.getWidth() / 2;
             YLength = bitmap0.getHeight() / 2;
             Random random = new Random();

@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     root.removeView(enemyList.get(i));
                     enemyList.remove(i);
                     root.removeView(hero);
-                    finishHandler.sendEmptyMessageDelayed(666, 1500);
+                    finishHandler.sendEmptyMessageDelayed(666, 800);
                     return false;
                 }
                 /* 计算与子弹碰撞 */
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             for (int i = 0; i < bulletList.size(); i++) {//刷新子弹视图
                 bulletList.get(i).invalidate();
             }
-            handler.sendEmptyMessageDelayed(0x000, 20);
+            handler.sendEmptyMessageDelayed(0x000, 16);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
