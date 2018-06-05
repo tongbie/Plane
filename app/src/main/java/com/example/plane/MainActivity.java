@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             for (int i = 0; i < bulletList.size(); i++) {//刷新子弹视图
                 bulletList.get(i).invalidate();
             }
-            handler.sendEmptyMessageDelayed(0x000, 16);
+            handler.sendEmptyMessageDelayed(0x000, 10);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

@@ -35,7 +35,7 @@ public class Bullet extends View {
     private Bitmap bitmap;
     private Matrix matrix = new Matrix();
     private Paint paint = new Paint();
-    private boolean isFirstMeasure=true;
+    private boolean isFirstMeasure = true;
 
     public void setXbullet(int Xbullet) {
         this.Xbullet = Xbullet;
@@ -56,17 +56,17 @@ public class Bullet extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        matrix.setTranslate(Xbullet-bitmap.getWidth()/2, Ybullet-bitmap.getHeight()/2);
+        matrix.setTranslate(Xbullet - bitmap.getWidth() / 2, Ybullet - bitmap.getHeight() / 2);
         canvas.drawBitmap(bitmap, matrix, paint);
         Ybullet -= 54;
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if(isFirstMeasure) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        if (isFirstMeasure) {
             bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullet);
-            isFirstMeasure=false;
+            isFirstMeasure = false;
         }
     }
 }

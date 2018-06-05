@@ -33,8 +33,8 @@ public class Control extends View {
 //                                isOnTouch = false;
                                 return true;
                             } else {*/
-                                Xcontroler = (int) motionEvent.getX();
-                                Ycontroler = (int) motionEvent.getY();
+                        Xcontroler = (int) motionEvent.getX();
+                        Ycontroler = (int) motionEvent.getY();
 //                            }
                         break;
                     case MotionEvent.ACTION_UP:
@@ -66,22 +66,22 @@ public class Control extends View {
     private boolean isFirstMeasure = true;
 
     public int getXspeed() {
-        return Xcontroler-Xposition;
+        return Xcontroler - Xposition;
     }
 
     public int getYspeed() {
-        return Ycontroler-Yposition;
+        return Ycontroler - Yposition;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         /* 将控制器越界判断移至onDraw() */
-        if ((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2)) >Math.pow(radio, 2)) {
+        if ((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2)) > Math.pow(radio, 2)) {
 //                                Xcontroler = Xposition;//Xposition+Xcontroler/((Xcontroler - Xposition) * (Ycontroler - Yposition))*radio;
 //                                Ycontroler = Yposition;//Yposition+Ycontroler/((Xcontroler - Xposition) * (Ycontroler - Yposition))*radio;
-            Xcontroler=radio*(int)(Xcontroler-Xposition)/(int)Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2)))+Xposition;
-            Ycontroler=radio*(int)(Ycontroler-Yposition)/(int)Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2)))+Yposition;
+            Xcontroler = radio * (int) (Xcontroler - Xposition) / (int) Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2))) + Xposition;
+            Ycontroler = radio * (int) (Ycontroler - Yposition) / (int) Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2))) + Yposition;
 //                                isOnTouch = false;
 
         }
@@ -91,9 +91,9 @@ public class Control extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if(isFirstMeasure) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        if (isFirstMeasure) {
             Xposition = getMeasuredWidth() / 4;
             Yposition = getMeasuredHeight() / 7 * 6;
             Xcontroler = Xposition;
@@ -105,7 +105,6 @@ public class Control extends View {
             paint.setAlpha(100);
             paint1.setColor(Color.parseColor("#ec6d71"));
             paint1.setAntiAlias(true);
-            isFirstMeasure=false;
         }
     }
 }
