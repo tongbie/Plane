@@ -10,21 +10,17 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by aaa on 2017/11/26.
- */
+public class Plane extends View {
 
-public class Hero extends View {
-
-    public Hero(Context context) {
+    public Plane(Context context) {
         super(context);
     }
 
-    public Hero(Context context, @Nullable AttributeSet attrs) {
+    public Plane(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public Hero(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public Plane(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -78,8 +74,8 @@ public class Hero extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         if (isFristMeasure) {
             super.onSizeChanged(w, h, oldw, oldh);
-            bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.hero0);
-            bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.hero1);
+            bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.ic_plane_state_1);
+            bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.ic_plane_state_2);
             Xhero = getMeasuredWidth() / 2;
             Yhero = getMeasuredHeight() / 2;
             Xlength = bitmap0.getWidth() / 2;

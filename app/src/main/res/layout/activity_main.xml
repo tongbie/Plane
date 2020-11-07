@@ -14,14 +14,15 @@
 
     <Button
         android:id="@+id/fire"
+        android:background="@drawable/ic_fire"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="right|bottom"
-        android:layout_marginBottom="50dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="20dp"
         android:alpha="0.7" />
 
-    <com.example.plane.MyTextView
+    <com.example.plane.ScoreView
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
         android:textAllCaps="false"
         android:layout_gravity="left|top"/>
 
-    <com.example.plane.MyTextView
+    <com.example.plane.ScoreView
         android:id="@+id/bullet_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,6 +39,4 @@
         android:gravity="center"
         android:textAllCaps="false"
         android:layout_gravity="right|top"/>
-
-
 </FrameLayout>

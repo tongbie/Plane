@@ -1,5 +1,6 @@
 package com.example.plane;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,13 +10,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Created by aaa on 2017/11/26.
- */
+public class Controller extends View {
 
-public class Control extends View {
-
-    public Control(Context context) {
+    @SuppressLint("ClickableViewAccessibility")
+    public Controller(Context context) {
         super(context);
         this.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -48,11 +46,11 @@ public class Control extends View {
         });
     }
 
-    public Control(Context context, @Nullable AttributeSet attrs) {
+    public Controller(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public Control(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public Controller(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -60,8 +58,8 @@ public class Control extends View {
     private int Ycontroler;
     private int Xposition = 0;
     private int Yposition = 0;
-    private Paint paint = new Paint();
-    private Paint paint1 = new Paint();
+    private final Paint paint = new Paint();
+    private final Paint paint1 = new Paint();
     private int radio;
     private boolean isFirstMeasure = true;
 
@@ -80,8 +78,8 @@ public class Control extends View {
         if ((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2)) > Math.pow(radio, 2)) {
 //                                Xcontroler = Xposition;//Xposition+Xcontroler/((Xcontroler - Xposition) * (Ycontroler - Yposition))*radio;
 //                                Ycontroler = Yposition;//Yposition+Ycontroler/((Xcontroler - Xposition) * (Ycontroler - Yposition))*radio;
-            Xcontroler = radio * (int) (Xcontroler - Xposition) / (int) Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2))) + Xposition;
-            Ycontroler = radio * (int) (Ycontroler - Yposition) / (int) Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2))) + Yposition;
+            Xcontroler = radio * (Xcontroler - Xposition) / (int) Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2))) + Xposition;
+            Ycontroler = radio * (Ycontroler - Yposition) / (int) Math.sqrt((Math.pow((Xcontroler - Xposition), 2) + Math.pow((Ycontroler - Yposition), 2))) + Yposition;
 //                                isOnTouch = false;
 
         }

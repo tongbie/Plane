@@ -13,10 +13,6 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-/**
- * Created by aaa on 2017/12/3.
- */
-
 public class Enemy extends View {
 
     public Enemy(Context context) {
@@ -111,7 +107,7 @@ public class Enemy extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if(isFirstMeasure) {
-            bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.enemy0);
+            bitmap0 = BitmapFactory.decodeResource(getResources(), R.drawable.ic_enemy);
             XLength = bitmap0.getWidth() / 2;
             YLength = bitmap0.getHeight() / 2;
             Random random = new Random();

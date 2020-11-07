@@ -11,27 +11,23 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-/**
- * Created by aaa on 2017/11/17.
- */
-
 @SuppressLint("AppCompatCustomView")
-public class MyTextView extends TextView {
+public class ScoreView extends TextView {
     Matrix mGradientMatrix = new Matrix();//矩阵
     int mViewWidth = 100;
     LinearGradient mLinearGradient;//着色器
     int mTranslate = 0;
     Paint mPaint;
 
-    public MyTextView(Context context) {
+    public ScoreView(Context context) {
         super(context);
     }
 
-    public MyTextView(Context context, @Nullable AttributeSet attrs) {
+    public ScoreView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MyTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ScoreView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -39,6 +35,7 @@ public class MyTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         /* 绘制边框 */
+        @SuppressLint("DrawAllocation")
         Paint rectPaint = new Paint();
         rectPaint.setColor(getCurrentTextColor());
         rectPaint.setStyle(Paint.Style.FILL);

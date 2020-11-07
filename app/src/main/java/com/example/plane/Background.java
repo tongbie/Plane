@@ -8,18 +8,13 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-
-/**
- * Created by aaa on 2017/11/26.
- */
 
 public class Background extends View {
 
     private Bitmap bitmap;
-    private Matrix matrix = new Matrix();
-    private Paint paint = new Paint();
+    private final Matrix matrix = new Matrix();
+    private final Paint paint = new Paint();
     private int Time = 0;
     private boolean isFirstMeasured = true;
 
@@ -50,12 +45,16 @@ public class Background extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (isFirstMeasured) {
-            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.background);
-            float scale = Utils.getScreenWidth(getContext()) / (float) bitmap.getWidth();
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bg_night_sky);
+            float scale = getScreenWidth(getContext()) / (float) bitmap.getWidth();
             matrix.postScale(scale, scale);
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
             Time = -bitmap.getHeight() + getMeasuredHeight();
             isFirstMeasured = false;
         }
+    }
+
+    private int getScreenWidth(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
     }
 }

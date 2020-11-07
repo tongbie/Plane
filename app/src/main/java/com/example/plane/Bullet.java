@@ -10,10 +10,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by aaa on 2017/11/28.
- */
-
 public class Bullet extends View {
 
     public Bullet(Context context, int Xbullet, int Ybullet) {
@@ -33,8 +29,8 @@ public class Bullet extends View {
     private int Xbullet;
     private int Ybullet;
     private Bitmap bitmap;
-    private Matrix matrix = new Matrix();
-    private Paint paint = new Paint();
+    private final Matrix matrix = new Matrix();
+    private final Paint paint = new Paint();
     private boolean isFirstMeasure = true;
 
     public void setXbullet(int Xbullet) {
@@ -65,7 +61,7 @@ public class Bullet extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (isFirstMeasure) {
-            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bullet);
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_bullet);
             isFirstMeasure = false;
         }
     }
